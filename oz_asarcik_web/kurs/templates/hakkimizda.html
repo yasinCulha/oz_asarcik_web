@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Hakkımızda - Öz Asarcık Sürücü Kursu{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-dark text-white text-center" style="background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('{% static "images/bg-hakkinda.webp" %}') no-repeat center center/cover;">
+    <div class="container py-4">
+        <h1 class="display-4 fw-bold">KURUMSAL</h1>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            
+            <div class="col-lg-7">
+                <h6 class="text-primary fw-bold mb-2">KURUCUMUZ</h6>
+                <h2 class="fw-bold mb-4">Eğitimde Vizyoner Bir Lider</h2>
+                <p class="text-secondary lead">Öz Asarcık Sürücü Kursu'nun temelleri, kurucumuzun 1990'lı yıllarda sürücü kursu sektöründe kazandığı tecrübelerle atılmıştır.</p>
+                <p class="text-muted">Asarcık'ta kaliteli eğitimin eksikliğini hissederek yola çıkan kurucumuz, "her birey güvenli sürüşü hak eder" ilkesiyle bu kurumu hayata geçirmiştir. Bugün Samsun'un en köklü kurslarından biri olmamızın arkasında, onun dürüstlük ve profesyonellik ilkeleri yatmaktadır.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm p-4" style="border-radius: 0 !important; border-top: 4px solid #ffc107 !important;">
+                    <i class="fa-solid fa-eye fa-3x text-warning mb-3"></i>
+                    <h4 class="fw-bold">Vizyonumuz</h4>
+                    <p class="text-muted small">Teknolojiyi eğitimin her aşamasına entegre ederek, Türkiye standartlarının üzerinde, Avrupa düzeyinde sürücü eğitimi veren öncü bir kurum olmak.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm p-4" style="border-radius: 0 !important; border-top: 4px solid #0d6efd !important;">
+                    <i class="fa-solid fa-bullseye fa-3x text-primary mb-3"></i>
+                    <h4 class="fw-bold">Misyonumuz</h4>
+                    <p class="text-muted small">Trafik kurallarına uymayı bir zorunluluk değil, bir yaşam kültürü olarak gören; çevreye ve insan haklarına saygılı bilinçli sürücüler yetiştirmek.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm p-4" style="border-radius: 0 !important; border-top: 4px solid #198754 !important;">
+                    <i class="fa-solid fa-shield-halved fa-3x text-success mb-3"></i>
+                    <h4 class="fw-bold">İlkelerimiz</h4>
+                    <ul class="text-muted small ps-3">
+                        <li>Şeffaf ve dürüst eğitim politikası.</li>
+                        <li>Yenilikçi öğretim metodolojileri.</li>
+                        <li>Öğrenci odaklı direksiyon eğitimleri.</li>
+                        <li>Sıfır hata ve %100 güven ilkesi.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

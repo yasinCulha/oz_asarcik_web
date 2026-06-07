@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3>Hoş Geldiniz, Hocam: {{ egitmen.ad }} {{ egitmen.soyad }}</h3>
+        <span class="badge bg-primary fs-6">{{ bugun }}</span>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-dark text-white">Direksiyon Eğitim Programım</div>
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Tarih</th>
+                        <th>Saat</th>
+                        <th>Kursiyer</th>
+                        <th>Kursiyer Tel</th>
+                        <th>Durum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ders in derslerim %}
+                    <tr>
+                        <td>{{ ders.tarih|date:"d.m.Y" }}</td>
+                        <td>{{ ders.saat_dilimi.baslik }}</td>
+                        <td>{{ ders.kursiyer.ad }} {{ ders.kursiyer.soyad }}</td>
+                        <td>{{ ders.kursiyer.telefon }}</td>
+                        <td>
+                             <span class="badge {% if ders.katilim_durumu == 'geldi' %}bg-success{% else %}bg-warning{% endif %}">
+                                {{ ders.katilim_durumu|upper }}
+                             </span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

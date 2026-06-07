@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-4">
+            {% for sinif in ehliyet_listesi %}
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm" style="border-radius: 0 !important;">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <i class="fa-solid fa-car fa-3x text-primary"></i>
+                            <span class="badge bg-dark rounded-0">{{ sinif.yas_siniri }} Yaş</span>
+                        </div>
+                        <h4 class="fw-bold">{{ sinif.ad }}</h4>
+                        <p class="text-muted small">{{ sinif.aciklama|truncatewords:20 }}</p>
+                        <hr>
+                        <div class="mt-auto">
+                            <a href="{% url 'ehliyet_detay' slug=sinif.slug %}" class="btn btn-outline-primary w-100 fw-bold" style="border-radius: 0 !important;">
+                                DETAYLI BİLGİ <i class="fa-solid fa-arrow-right ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

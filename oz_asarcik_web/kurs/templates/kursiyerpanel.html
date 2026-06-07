@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block title %}Kursiyer Paneli - Öz Asarcık{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-light">
+    <div class="container">
+        
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show rounded-0 mb-4" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm" style="border-radius: 0 !important;">
+                    <div class="card-body text-center p-5">
+                        <div class="mb-4">
+                            <i class="fa-solid fa-circle-user fa-5x text-primary"></i>
+                        </div>
+                        <h4 class="fw-bold mb-1">
+                            {% if kursiyer.ad %}
+                                {{ kursiyer.ad|capfirst }} {{ kursiyer.soyad|upper }}
+                            {% else %}
+                                {{ request.user.username }}
+                            {% endif %}
+                        </h4>
+                        <span class="badge bg-dark rounded-0 px-3 py-2 text-uppercase">
+                            {{ kursiyer.ehliyet_sinifi.ad }} Sürücü Adayı
+                        </span>
+                    </div>
+                </div>
+
+                <div class="list-group mt-4 shadow-sm" style="border-radius: 0 !important;">
+                    <a href="#" class="list-group-item list-group-item-action active border-0 rounded-0 p-3">
+                        <i class="fa-solid fa-gauge-high me-2"></i> Panel Özeti
+                    </a>
+                    <a href="{% url 'gecmis_randevular' %}" class="list-group-item list-group-item-action border-0 p-3">
+                        <i class="fa-solid fa-calendar-check me-2"></i> Randevularım
+                    </a>
+                    <a href="{% url "yanlislarim" %}" class="list-group-item list-group-item-action border-0 p-3">
+                        <i class="fa-solid fa-file-lines me-2"></i> Yanlışlarım
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                
+                <div class="card border-0 shadow-sm mb-4" style="border-radius: 0 !important; border-left: 5px solid #0d6efd !important;">
+                    <div class="card-header bg-white p-3 border-0">
+                        <h5 class="fw-bold mb-0 text-uppercase"><i class="fa-solid fa-calendar-plus me-2 text-primary"></i>Yeni Randevu Talebi</h5>
+                    </div>
+                    <div class="card-body p-4">
+                        <form method="POST" action="{% url 'randevu_olustur' %}" class="row g-3">
+                            {% csrf_token %}
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">Tarih</label>
+                                <input type="date" name="tarih" class="form-control rounded-0" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">Saat Aralığı</label>
+                                <select name="baslik" class="form-control rounded-0" required>
+                                    <option value="">Seçiniz...</option>
+                                    {% for saat in saatler %}
+                                        <option value="{{ saat.id }}">{{ saat.baslik }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small fw-bold">Eğitmen</label>
+                                <select name="egitmen" class="form-control rounded-0" required>
+                                    <option value="">Hoca Seçiniz...</option>
+                                    {% for hoca in egitmenler %}
+                                        <option value="{{ hoca.id }}">{{ hoca.ad }} {{ hoca.soyad }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <button type="submit" class="btn btn-primary w-100 rounded-0 fw-bold shadow-sm">
+                                    RANDEVUYU SİSTEME KAYDET
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card border-0 shadow-sm" style="border-radius: 0 !important;">
+                    <div class="card-header bg-white p-3 border-0 d-flex justify-content-between align-items-center">
+                        <h5 class="fw-bold mb-0 text-uppercase text-primary">Yaklaşan Eğitim Planım</h5>
+                        <i class="fa-solid fa-clock-rotate-left text-muted"></i>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="p-3 border-0">Tarih</th> <th class="p-3 border-0">Saat Aralığı</th>
+                                        <th class="p-3 border-0">Eğitmen</th>
+                                        <th class="p-3 border-0">Durum</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for randevu in randevular %}
+                                    <tr>
+                                        <td class="p-3 align-middle fw-bold">{{ randevu.tarih|date:"d F Y" }}</td>
+                                        <td class="p-3 align-middle">{{ randevu.saat_dilimi.baslik }}</td>
+                                        <td class="p-3 align-middle">{{ randevu.egitmen.ad }} {{ randevu.egitmen.soyad }}</td>
+                                        <td class="p-3 align-middle">
+                                            {% if randevu.tarih == bugun %}
+                                                <span class="badge bg-warning text-dark rounded-0">BUGÜN</span>
+                                            {% else %}
+                                                <span class="badge bg-info text-dark rounded-0">GELECEK</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="4" class="text-center p-5 text-muted small">
+                                            <i class="fa-solid fa-calendar-xmark d-block mb-2 fa-2x opacity-25"></i>
+                                            Planlanmış aktif bir eğitiminiz bulunmamaktadır.
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

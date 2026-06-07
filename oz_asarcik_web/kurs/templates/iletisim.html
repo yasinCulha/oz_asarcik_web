@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}İletişim - Öz Asarcık Sürücü Kursu{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-dark text-white text-center" style="background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('{% static "images/bg-iletisim.webp" %}') no-repeat center center/cover;">
+    <div class="container py-4">
+        <h1 class="display-4 fw-bold text-uppercase">{{ ayarlar.site_basligi|default:"İLETİŞİM" }}</h1>
+        <p class="lead">Sorularınız ve kayıt işlemleri için bize ulaşın.</p>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-5">
+            
+            <div class="col-lg-5">
+                <h3 class="fw-bold mb-4 border-start border-primary border-4 ps-3">Bize Ulaşın</h3>
+                
+                <div class="d-flex align-items-center mb-4 p-3 bg-white shadow-sm" style="border-radius: 0 !important;">
+                    <div class="bg-primary p-3 text-white me-3">
+                        <i class="fa-solid fa-location-dot fa-2x"></i>
+                    </div>
+                    <div>
+                        <h6 class="fw-bold mb-1">Adresimiz</h6>
+                        <p class="text-muted small mb-0">{{ ayarlar.adres_metni|linebreaksbr }}</p>
+                    </div>
+                </div>
+
+                <div class="d-flex align-items-center mb-4 p-3 bg-white shadow-sm" style="border-radius: 0 !important;">
+                    <div class="bg-success p-3 text-white me-3">
+                        <i class="fa-solid fa-phone fa-2x"></i>
+                    </div>
+                    <div>
+                        <h6 class="fw-bold mb-1">Telefon / WhatsApp</h6>
+                        <p class="text-muted small mb-0">
+                            <a href="https://wa.me/{{ ayarlar.whatsapp_numarasi }}" class="text-decoration-none text-muted">
+                                {{ ayarlar.whatsapp_numarasi }}
+                            </a>
+                        </p>
+                    </div>
+                </div>
+
+                    <div class="d-flex align-items-center mb-4 p-3 bg-white shadow-sm" style="border-radius: 0 !important;">
+                        <div class="bg-warning p-3 text-dark me-3">
+                            <i class="fa-brands fa-instagram fa-2x"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Instagram</h6>
+                            <p class="mb-0">
+                                <a href="{{ ayarlar.instagram_adresi }}" target="_blank" class="text-decoration-none text-muted small">
+                                    @ozasarcik_surucukursu <i class="fa-solid fa-arrow-up-right-from-square ms-1" style="font-size: 10px;"></i>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+
+                <div class="d-flex align-items-center mb-4 p-3 bg-white shadow-sm" style="border-radius: 0 !important;">
+                    <div class="bg-info p-3 text-white me-3">
+                        <i class="fa-solid fa-envelope fa-2x"></i>
+                    </div>
+                    <div>
+                        <h6 class="fw-bold mb-1">E-Posta</h6>
+                        <p class="text-muted small mb-0">{{ ayarlar.eposta_adresi }}</p>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-dark text-white mt-5" style="border-radius: 0 !important;">
+                    <h5 class="fw-bold border-bottom border-secondary pb-2 mb-3">Çalışma Saatlerimiz</h5>
+                    <div class="d-flex justify-content-between small mb-2">
+                        <span>Pazartesi - Cumartesi:</span>
+                        <span>09:00 - 19:00</span>
+                    </div>
+                    <div class="d-flex justify-content-between small">
+                        <span>Pazar:</span>
+                        <span class="text-danger">Kapalı</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="card p-4 border-0 shadow-lg" style="border-radius: 0 !important;">
+                    <h3 class="fw-bold mb-4">Mesaj Gönderin</h3>
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Adınız Soyadınız</label>
+                                <input type="text" name="name" class="form-control" placeholder="Ad Soyad" style="border-radius: 0 !important;" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold small">Telefon Numaranız</label>
+                                <input type="tel" name="phone" class="form-control" placeholder="05XX XXX XX XX" style="border-radius: 0 !important;" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-bold small">Konu</label>
+                                <input type="text" name="subject" class="form-control" placeholder="Kayıt İşlemleri Hakkında" style="border-radius: 0 !important;">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-bold small">Mesajınız</label>
+                                <textarea name="message" class="form-control" rows="5" placeholder="Sorularınızı buraya yazabilirsiniz..." style="border-radius: 0 !important;" required></textarea>
+                            </div>
+                            <div class="col-12 mt-3">
+                                <button type="submit" class="btn btn-primary w-100 py-3 fw-bold text-uppercase">
+                                    FORMU GÖNDER
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="w-100 mt-5" style="height: 500px; filter: grayscale(10%);">
+    {% if ayarlar.konum_linki %}
+        <div class="map-responsive h-100 w-100">
+            {{ ayarlar.konum_linki|safe }}
+        </div>
+    {% else %}
+        <p class="text-center p-5">Harita bilgisi henüz eklenmedi.</p>
+    {% endif %}
+</section>
+
+<style>
+    /* Bu blok, iframe içindeki sabit 600px genişliğini yok sayar ve ekranı kaplatır */
+    .map-responsive iframe {
+        width: 100% !important;
+        height: 100% !important;
+        border: 0 !important;
+    }
+</style>
+{% endblock %}

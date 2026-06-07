@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ sinif.ad }} Detayları - Öz Asarcık Sürücü Kursu{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-dark text-white" style="background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1494976388531-d1058494cdd8?q=80&w=2070') no-repeat center center/cover;">
+    <div class="container py-4">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h6 class="text-warning fw-bold text-uppercase mb-2">Öz Asarcık Eğitim Programı</h6>
+                <h1 class="display-4 fw-bold text-uppercase">{{ sinif.ad }} DETAYLARI</h1>
+            </div>
+            <div class="col-md-4 text-md-end">
+                <a href="https://wa.me/{{ ayarlar.whatsapp_numarasi }}" class="btn btn-warning btn-lg fw-bold" style="border-radius: 0 !important;">
+                    <i class="fab fa-whatsapp me-2"></i> ŞİMDİ BİLGİ AL
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-8">
+                <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=2070" class="img-fluid mb-4 shadow" style="border-radius: 0 !important;" alt="{{ sinif.ad }}">
+                
+                <h3 class="fw-bold mb-4">{{ sinif.ad }} Hakkında</h3>
+                <p class="text-secondary mb-4">
+                    {{ sinif.aciklama }}
+                </p>
+
+                <h4 class="fw-bold mb-3">Kurs İçeriği ve Eğitimler</h4>
+                <div class="row g-4 mb-5">
+                    <div class="col-md-6">
+                        <div class="p-3 bg-light border-start border-primary border-4">
+                            <h5 class="fw-bold">Teorik Eğitim</h5>
+                            <p class="small text-muted mb-0">Trafik, İlkyardım, Motor ve Trafik Adabı derslerini kapsayan profesyonel eğitim.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="p-3 bg-light border-start border-danger border-4">
+                            <h5 class="fw-bold">Direksiyon Eğitimi</h5>
+                            <p class="small text-muted mb-0">Birebir eğitmen eşliğinde, sınava yönelik profesyonel sürüş dersleri.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="p-4 bg-dark text-white shadow" style="border-radius: 0 !important;">
+                    <h4 class="fw-bold mb-4 border-bottom border-warning pb-2">Hızlı Bilgi Paneli</h4>
+                    <ul class="list-unstyled mb-0">
+                        <li class="d-flex justify-content-between py-2 border-bottom border-secondary">
+                            <span>Yaş Şartı</span>
+                            <span class="text-warning fw-bold">{{ sinif.yas_siniri }} Yaş</span>
+                        </li>
+                        <li class="d-flex justify-content-between py-2 border-bottom border-secondary">
+                            <span>Kurs Ücreti</span>
+                            <span class="text-warning fw-bold">{{ sinif.fiyat }} TL</span>
+                        </li>
+                        <li class="d-flex justify-content-between py-2 border-bottom border-secondary">
+                            <span>Kayıt Durumu</span>
+                            <span class="badge bg-success rounded-0">KAYITLAR AÇIK</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="mt-4 p-4 bg-white shadow-sm border" style="border-radius: 0 !important;">
+                    <h5 class="fw-bold mb-3 text-uppercase border-bottom pb-2">Gerekli Evraklar</h5>
+                    <div class="row">
+                        {% for evrak in sinif.evraklar.all %}
+                        <div class="col-12 mb-2">
+                            <div class="d-flex align-items-start p-2 border-bottom">
+                                <i class="fa-solid fa-check-square text-success mt-1 me-2"></i>
+                                <div>
+                                    <h6 class="fw-bold mb-0 small">{{ evrak.ad }}</h6>
+                                    {% if evrak.aciklama %}
+                                    <small class="text-muted" style="font-size: 0.75rem;">{{ evrak.aciklama }}</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <p class="text-muted small">Bu sınıf için henüz evrak tanımlanmamıştır.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

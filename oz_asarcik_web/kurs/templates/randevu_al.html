@@ -1,0 +1,29 @@
+<div class="card p-4 shadow-sm border-0">
+    <form method="POST" action="{% url 'randevu_al_islem' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">Tarih Seç</label>
+            <input type="date" name="tarih" class="form-control" required>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Saat Aralığı</label>
+            <select name="saat" class="form-control" required>
+                {% for saat in saatler %}
+                    <option value="{{ saat.id }}">{{ saat.baslik }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Eğitmen Seç</label>
+            <select name="egitmen" class="form-control" required>
+                {% for egitmen in egitmenler %}
+                    <option value="{{ egitmen.id }}">{{ egitmen.ad }} {{ egitmen.soyad }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">RANDEVUYU ONAYLA</button>
+    </form>
+</div>

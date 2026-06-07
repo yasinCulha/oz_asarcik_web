@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>
+    {% if calisma_modu %}
+        {{ kategori_adi }} Konu Testi (20 Soru)
+    {% else %}
+        Genel Deneme Sınavı (50 Soru)
+    {% endif %}
+</h2>
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
+        <h2>Ehliyet Deneme Sınavı</h2>
+        <div class="badge bg-danger p-2 fs-5" id="timer">Süre: 45:00</div>
+    </div>
+
+    <form action="{% url 'sinav_tamamla' %}" method="POST" id="sinavForm">
+        {% csrf_token %}
+        {% for soru in sorular %}
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header bg-light d-flex justify-content-between">
+                <span class="fw-bold">Soru {{ forloop.counter }}</span>
+                <span class="badge bg-secondary text-uppercase">{{ soru.kategori }}</span>
+            </div>
+            <div class="card-body">
+                <p class="card-text fs-5">{{ soru.metin }}</p>
+                
+                <div class="list-group">
+                    <label class="list-group-item list-group-item-action">
+                        <input class="form-check-input me-2" type="radio" name="soru_{{ soru.id }}" value="A" required>
+                        A) {{ soru.secenek_a }}
+                    </label>
+                    <label class="list-group-item list-group-item-action">
+                        <input class="form-check-input me-2" type="radio" name="soru_{{ soru.id }}" value="B">
+                        B) {{ soru.secenek_b }}
+                    </label>
+                    <label class="list-group-item list-group-item-action">
+                        <input class="form-check-input me-2" type="radio" name="soru_{{ soru.id }}" value="C">
+                        C) {{ soru.secenek_c }}
+                    </label>
+                    <label class="list-group-item list-group-item-action">
+                        <input class="form-check-input me-2" type="radio" name="soru_{{ soru.id }}" value="D">
+                        D) {{ soru.secenek_d }}
+                    </label>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="d-grid gap-2 mb-5">
+            <button type="submit" class="btn btn-primary btn-lg">Sınavı Bitir</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    // Küçük bir JS timer ekleyelim kanka, sunumda çok şık durur
+    let sure = 45 * 60; // 45 dakika
+    const timerElement = document.getElementById('timer');
+
+    const countdown = setInterval(() => {
+        let dakika = Math.floor(sure / 60);
+        let saniye = sure % 60;
+        saniye = saniye < 10 ? '0' + saniye : saniye;
+        timerElement.innerHTML = `Süre: ${dakika}:${saniye}`;
+        sure--;
+
+        if (sure < 0) {
+            clearInterval(countdown);
+            alert("Süre bitti! Sınavınız otomatik gönderiliyor.");
+            document.getElementById('sinavForm').submit();
+        }
+    }, 1000);
+</script>
+{% endblock %}

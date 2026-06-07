@@ -1,0 +1,12 @@
+# Kazıma kodunu engelle
+kurs/scraper.py
+
+# Django'nun lokal veritabanını engelle
+db.sqlite3
+
+# Python'un gereksiz önbellek klasörlerini engelle
+__pycache__/
+*.pyc
+
+# VS Code ayar klasörünü engelle
+.vscode/
