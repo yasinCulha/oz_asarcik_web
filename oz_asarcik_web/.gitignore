@@ -10,3 +10,5 @@ __pycache__/
 
 # VS Code ayar klasörünü engelle
 .vscode/
+
+gerekli.txt
