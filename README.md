@@ -45,7 +45,7 @@ Masaüstü ve Web uygulamaları, bulut tabanlı ortak bir veritabanı mimarisi �
 ### 1. Web Projesini Yerelde Çalıştırma
 ```bash
 # Projeyi klonlayın
-git clone [https://github.com/KULLANICI_ADIN/REPOS_ADIN.git](https://github.com/KULLANICI_ADIN/REPOS_ADIN.git)
+git clone [https://github.com/yasinCulha/oz_asarcik_web.git](https://github.com/yasinCulha/oz_asarcik_web.git)
 
 # Proje klasörüne girin
 cd oz_asarcik_web
