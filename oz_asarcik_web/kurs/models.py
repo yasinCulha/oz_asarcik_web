@@ -10,7 +10,7 @@ class EhliyetSinifi(models.Model):
     aciklama = models.TextField()
     yas_siniri = models.IntegerField(default=18)
     fiyat = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
-    resim_yolu = models.CharField(max_length=200, null=True, blank=True, default="images/ehliyet/varsayilan.jpg")
+    resim_yolu = models.CharField(max_length=200, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
