@@ -15,8 +15,9 @@ postgresql://neondb_owner:npg_sPNMwSRT47ZK@ep-withered-field-a2jeywug.eu-central
 masaüstü uygulaması yolu
 C:\Users\Yasin\source\repos\c# dersi\oz_asarcik\oz_asarcik\bin\Release
 -----------------------------------------------------------------------
-kurstan bir logo resni iste bir tane araba bir tane motor bir tane kamyon ve bir tane de arka plana koyulcak resim iste 
-footer bazı sayfalarda yukarı doğru çıkıyor onlarıda düzenle 
+YAPILCAKLAR
+ehliyet sınıf detay kısmında koyulcak resimler dinamik yap
+title kısmına icon ekle 
 
 masaüstü uygulamasında;
 yeni kursiyer ekle kısmında tc ve tel no  kısmına sadece sayı girilir hale gelicek,ad ve soyad kısmı sadece harf girilir olucak.
