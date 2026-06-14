@@ -1,9 +1,7 @@
 from django.db import models
-
-# Create your models here.
-from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
+from django.templatetags.static import static
 
 # 1. Ehliyet Sınıfları Tablosu
 class EhliyetSinifi(models.Model):
@@ -12,6 +10,7 @@ class EhliyetSinifi(models.Model):
     aciklama = models.TextField()
     yas_siniri = models.IntegerField(default=18)
     fiyat = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    resim_yolu = models.CharField(max_length=200, null=True, blank=True, default="images/ehliyet/varsayilan.jpg")
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -20,6 +19,7 @@ class EhliyetSinifi(models.Model):
 
     def __str__(self):
         return self.ad
+    
 
 # 2. Kursiyer Bilgileri (Genişletilmiş User Modeli)
 class Kursiyer(models.Model):

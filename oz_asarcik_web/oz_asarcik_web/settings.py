@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'oz_asarcik_web.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgresql://neondb_owner:npg_sPNMwSRT47ZK@ep-withered-field-a2jeywug.eu-central-1.aws.neon.tech/neondb?sslmode=require',
+        default='postgresql://neondb_owner:npg_DbGrqX95upjx@ep-withered-field-a2jeywug-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require',
         conn_max_age=600,
         ssl_require=True
     )
