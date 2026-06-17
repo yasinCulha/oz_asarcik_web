@@ -39,6 +39,20 @@ def iletisim(request):
 
         if ad_soyad and telefon and mesaj:
             # Veritabanına kaydet
+            if any(char.isdigit() for char in ad_soyad):
+                messages.error(
+                    request, "Ad Soyad alanında sayı kullanılamaz! ❌"
+                )
+                return render(request, "iletisim.html", {"ayarlar": ayarlar})
+
+            # 🔥 3. Kontrol: Telefon sadece sayılardan mı oluşuyor?
+            if not telefon.isdigit():
+                messages.error(
+                    request,
+                    "Telefon numarası sadece sayılardan oluşmalıdır! ❌",
+                )
+                return render(request, "iletisim.html", {"ayarlar": ayarlar})
+            
             mesajKayit = IletisimBasvurusu.objects.create(
                 ad_soyad=ad_soyad,
                 telefon=telefon,

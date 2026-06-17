@@ -95,11 +95,11 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="form-label fw-bold small">Adınız Soyadınız</label>
-                                <input type="text" name="name" class="form-control" placeholder="Ad Soyad" style="border-radius: 0 !important;" required>
+                                <input type="text" name="name" pattern="^[a-zA-Zğüşöçİı ]+$" title="Sadece harf giriniz" class="form-control" placeholder="Ad Soyad" style="border-radius: 0 !important;" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label fw-bold small">Telefon Numaranız</label>
-                                <input type="tel" name="phone" class="form-control" placeholder="05XX XXX XX XX" style="border-radius: 0 !important;" required>
+                                <input type="tel" name="phone" pattern="^[0-9]+$" title="Sadece sayı giriniz" class="form-control" placeholder="05XX XXX XX XX" style="border-radius: 0 !important;" required>
                             </div>
                             <div class="col-12">
                                 <label class="form-label fw-bold small">Konu</label>
