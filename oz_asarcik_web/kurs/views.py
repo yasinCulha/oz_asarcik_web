@@ -156,6 +156,7 @@ def randevu_olustur(request):
             return redirect('kursiyerpanel')
         if cakisma:
             messages.error(request, "Bu hoca o saatte dolu! Başka saat veya hoca seç.")
+            return redirect('kursiyerpanel')
         
         Randevu.objects.create(
             kursiyer=kursiyer,
