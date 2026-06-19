@@ -156,18 +156,16 @@ def randevu_olustur(request):
             return redirect('kursiyerpanel')
         if cakisma:
             messages.error(request, "Bu hoca o saatte dolu! Başka saat veya hoca seç.")
-        else:
-            Randevu.objects.create(
-                kursiyer=kursiyer,
-                tarih=tarih,
-                saat_dilimi_id=saat_id,
-                egitmen_id=egitmen_id,
-                dolu_mu=True # Kursiyer seçtiği an doluyor
-            )
-            print("Kayıt başarıyla oluşturuldu!")
-            messages.success(request, "Randevun oluşturuldu!")
         
-        return redirect('kursiyerpanel')
+        Randevu.objects.create(
+            kursiyer=kursiyer,
+            tarih=tarih,
+            saat_dilimi_id=saat_id,
+            egitmen_id=egitmen_id,
+            dolu_mu=True # Kursiyer seçtiği an doluyor
+            )
+        print("Kayıt başarıyla oluşturuldu!")
+        messages.success(request, "Randevun oluşturuldu!")    
     
     return redirect('kursiyerpanel')
 
