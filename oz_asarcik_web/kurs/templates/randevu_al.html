@@ -3,7 +3,7 @@
         {% csrf_token %}
         <div class="mb-3">
             <label class="form-label">Tarih Seç</label>
-            <input type="date" name="tarih" class="form-control" required>
+            <input type="date" name="tarih" class="form-control" min="{{ bugun }}" required>
         </div>
         
         <div class="mb-3">

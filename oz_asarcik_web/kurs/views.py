@@ -87,6 +87,8 @@ def kursiyerPanel(request):
         bugun = timezone.now().date()
         randevular= Randevu.objects.filter(kursiyer=kursiyer,dolu_mu=True,tarih__gte=bugun).order_by('tarih','saat_dilimi__sira')
         musait_randevular = Randevu.objects.filter(dolu_mu=False).order_by('tarih','saat_dilimi__sira')
+
+        
         context= {
             'kursiyer': kursiyer,
             'randevular': randevular,
@@ -148,7 +150,9 @@ def randevu_olustur(request):
 
         # Çakışma Kontrolü: Aynı hoca, aynı gün ve saatte dolu mu?
         cakisma = Randevu.objects.filter(tarih=tarih, saat_dilimi_id=saat_id, egitmen_id=egitmen_id).exists()
-        
+        bugun = timezone.now().date()
+        if(tarih < str(bugun)):
+            messages.error(request, "Geçmiş tarihte randevu oluşturamazsınız!")
         if cakisma:
             messages.error(request, "Bu hoca o saatte dolu! Başka saat veya hoca seç.")
         else:
