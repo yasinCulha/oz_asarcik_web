@@ -153,6 +153,7 @@ def randevu_olustur(request):
         bugun = timezone.now().date()
         if(tarih < str(bugun)):
             messages.error(request, "Geçmiş tarihte randevu oluşturamazsınız!")
+            return redirect('kursiyerpanel')
         if cakisma:
             messages.error(request, "Bu hoca o saatte dolu! Başka saat veya hoca seç.")
         else:
