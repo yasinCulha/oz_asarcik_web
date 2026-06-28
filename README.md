@@ -1,57 +1,64 @@
-# Öz Asarcık - Sürücü Kursu Otomasyonu & Web Yönetim Sistemi 🚗💨
+Öz Asarcık - Driving School Automation & Web Management System 🚗💨
+This project is a hybrid (Desktop + Web) automation system developed to both streamline the desktop management processes of a driving school (trainee tracking, classroom management, exam questions) and establish the school's digital presence (live website, WhatsApp integration, dynamic management panel).
 
-Bu proje; bir sürücü kursunun hem masaüstü yönetim süreçlerini (kursiyer takibi, sınıf yönetimi, sınav soruları) kolaylaştırmak hem de kursun dijital dünyadaki yüzünü (canlı web sitesi, WhatsApp entegrasyonu, dinamik yönetim paneli) oluşturmak amacıyla geliştirilmiş **hibrit (Masaüstü + Web)** bir otomasyon sistemidir.
+The Desktop and Web applications communicate with each other in real-time through a shared, cloud-based database architecture.
 
-Masaüstü ve Web uygulamaları, bulut tabanlı ortak bir veritabanı mimarisi üzerinden gerçek zamanlı (real-time) olarak birbiriyle konuşmaktadır.
+🛠️ Technologies & Architecture
+💻 Desktop Automation (Desktop Application)
+Language / Framework: C# | .NET Windows Forms
+
+Database Driver: Npgsql (PostgreSQL Client)
+
+Architectural Structure: Dynamic lifecycle management between forms (FormClosed and main thread optimizations have been implemented).
+
+Deployment Mode: Portable - Can run directly from a flash drive on any computer with an internet connection, requiring no installation.
+
+🌐 Website & Management Panel (Web Application)
+Backend Framework: Python | Django MVT
+
+Database / ORM: Django ORM & PostgreSQL
+
+Deployment (Live): Render Cloud Platform
+
+Additional Features: Dynamic WhatsApp redirection system, responsive (mobile-friendly) interface, static file (WhiteNoise) optimizations.
+
+☁️ Cloud Database
+Infrastructure: Neon Tech (Serverless PostgreSQL)
+
+Feature: Both the C# desktop application and the Django website fetch and update data instantly through a shared database schema.
+
+🚀 Project Features
+👨‍💼 Desktop Panel Features
+Trainee Management: Trainee registration, listing, and status update operations.
+
+Classroom & Tab Management: Screens optimized with dynamic transitions between classrooms and clean memory management.
+
+Exam Question Pool: Listing and managing thousands of rows of question pools migrated from local databases to the cloud for driving school exams.
+
+🕸️ Website Features
+Dynamic WhatsApp Button: A quick-action button optimized for international number formats, allowing clients to contact the school directly.
+
+Advanced Management Panel: Ability to update all course content, exam questions, and contact information live via the Django Admin panel.
 
 ---
 
-## 🛠️ Kullanılan Teknolojiler ve Mimari
+⚙️ Installation and Setup
+1. Running the Web Project Locally
+Bash
+# Clone the project
+git clone https://github.com/yasinCulha/oz_asarcik_web.git
 
-### 💻 Masaüstü Otomasyonu (Desktop Application)
-* **Dil / Framework:** C# | .NET Windows Forms
-* **Veritabanı Sürücüsü:** Npgsql (PostgreSQL Client)
-* **Mimari Yapı:** Formlar arası dinamik yaşam döngüsü yönetimi (`FormClosed` ve ana thread optimizasyonları yapılmıştır).
-* **Dağıtım Modu:** Taşınabilir (Portable) - Kuruluma ihtiyaç duymadan, internet olan her bilgisayarda flash bellek üzerinden doğrudan çalışabilir.
-
-### 🌐 Web Sitesi & Yönetim Paneli (Web Application)
-* **Backend Framework:** Python | Django MVT
-* **Veritabanı / ORM:** Django ORM & PostgreSQL
-* **Canlı Yayın (Deployment):** Render Cloud Platform
-* **Ek Özellikler:** Dinamik WhatsApp yönlendirme sistemi, responsive (mobil uyumlu) arayüz, statik dosya (WhiteNoise) optimizasyonları.
-
-### ☁️ Bulut Veritabanı (Cloud Database)
-* **Altyapı:** Neon Tech (Serverless PostgreSQL)
-* **Özellik:** Hem C# masaüstü uygulaması hem de Django web sitesi verileri ortak bir şema üzerinden anlık olarak çeker ve günceller.
-
----
-
-## 🚀 Proje Özellikleri
-
-### 👨‍💼 Masaüstü Paneli Özellikleri
-- **Kursiyer Yönetimi:** Kursiyer kayıt, listeleme ve durum güncelleme işlemleri.
-- **Sınıf & Sekme Yönetimi:** Dinamik sınıflar arası geçiş ve temiz bellek yönetimiyle optimize edilmiş ekranlar.
-- **Sınav Soruları Havuzu:** Sürücü kursu sınavlarına yönelik yerel veritabanından buluta göç ettirilmiş binlerce satırlık soru havuzunun listelenmesi ve yönetimi.
-
-### 🕸️ Web Sitesi Özellikleri
-- **Dinamik WhatsApp Butonu:** Müşterilerin kurs ile doğrudan (uluslararası numara formatı optimizasyonlu) iletişime geçebileceği hızlı buton.
-- **Gelişmiş Yönetim Paneli:** Django Admin üzerinden tüm kurs içeriğinin, sınav sorularının ve iletişim bilgilerinin canlı olarak güncellenebilmesi.
-
----
-
-## ⚙️ Kurulum ve Çalıştırma
-
-
-### 1. Web Projesini Yerelde Çalıştırma
-```bash
-# Projeyi klonlayın
-git clone [https://github.com/yasinCulha/oz_asarcik_web.git](https://github.com/yasinCulha/oz_asarcik_web.git)
-
-# Proje klasörüne girin
+# Navigate to the project directory
 cd oz_asarcik_web
 
-# Gerekli kütüphaneleri yükleyin
+# Install required dependencies
 pip install -r requirements.txt
+
+# Run database migrations
+python manage.py migrate
+
+# Start the development server
+python manage.py runserver
 
 # Veritabanı geçişlerini yapın
 python manage.py migrate
